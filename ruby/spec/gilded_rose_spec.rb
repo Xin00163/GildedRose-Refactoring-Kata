@@ -41,12 +41,24 @@ describe GildedRose do
     end
   end
 
-  describe "#sulfuras_update_quality" do
+  describe "#backstage_update_quality" do
     it "backstage's quality increase as it gets older" do
-      item = GildedRose.new("Backstage passes", 10, 10)
+      item = GildedRose.new("Backstage passes", 14, 10)
       item.backstage_update_quality()
       expect(item.quality).to eq(11)
-      expect(item.sell_in).to eq(9)
+      expect(item.sell_in).to eq(13)
+    end
+
+    it "backstage's quality increase by 2 when there are 10 days or less" do
+      item = GildedRose.new("Backstage passes", 10, 10)
+      item.backstage_update_quality()
+      expect(item.quality).to eq(12)
+    end
+
+    it "backstage's quality increase by 3 when there are 5 days or less" do
+      item = GildedRose.new("Backstage passes", 5, 10)
+      item.backstage_update_quality()
+      expect(item.quality).to eq(13)
     end
   end
 
