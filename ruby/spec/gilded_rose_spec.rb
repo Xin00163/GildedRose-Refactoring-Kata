@@ -62,6 +62,13 @@ describe GildedRose do
     end
   end
 
+  describe "#conjured_update_quality" do
+    it "conjured's quality degrades twice as fast as normal items" do
+      item = GildedRose.new("Conjured", 5, 10)
+      item.conjured_update_quality()
+      expect(item.quality).to eq(8)
+    end
+  end
 
 
 end
