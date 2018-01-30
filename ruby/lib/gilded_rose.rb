@@ -1,4 +1,4 @@
-class GildedRose
+class Item
   attr_accessor :name, :sell_in, :quality
 
   def initialize(name, sell_in, quality)
@@ -11,7 +11,12 @@ class GildedRose
     "#{@name}, #{@sell_in}, #{@quality}"
   end
 
-  def normal_update_quality
+  def update_quality
+  end
+end
+
+class Normal < Item
+  def update_quality
     return if @quality == 0
     if @sell_in > 0
       @quality -= 1
@@ -21,46 +26,48 @@ class GildedRose
 
     @sell_in -= 1
   end
+end
 
-  def aged_brie_update_quality
+class Aged_brie < Item
+  def update_quality
     return if @quality >= 50
     @quality += 1
     @sell_in -= 1
   end
+end
 
-  def sulfuras_update_quality
+class Sulfuras < Item
+  def update_quality
     @quality
-    @sell_in -= 1
   end
+end
 
-  def backstage_update_quality
-    @sell_in -= 1
+class Backstage < Item
+  def update_quality
     return if @quality >= 50
     return @quality == 0 if @sell_in < 0
 
     @quality += 1
     @quality += 1 if @sell_in <= 10
     @quality += 1 if @sell_in <= 5
-  end
 
-  def conjured_update_quality
-    return if @quality == 0
-    @quality -= 2
     @sell_in -= 1
   end
+end
 
+class Conjured < Item
   def update_quality
-    case name
-      when 'normal'
-        return normal_update_quality
-      when 'Aged Brie'
-        return aged_brie_update_quality
-      when 'Sulfuras'
-        return sulfuras_update_quality
-      when 'Backstage passes'
-        return backstage_update_quality
-      when "Conjured"
-        return conjured_update_quality
-    end
+    return if @quality == 0
+
+    @quality -= 2
+    @quality -= 2 if @sell_in <= 0
+
+    @sell_in -= 1
   end
 end
+
+  # class = {"Normal" : Normal,
+  #         "Aged_brie" : Aged_brie,
+  #         "Sulfuras" : Sulfuras
+  #         "Backstage" : Backstage
+  #         "Conjured" : Conjured}

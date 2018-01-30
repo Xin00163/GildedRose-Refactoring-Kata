@@ -4,21 +4,21 @@ describe GildedRose do
 
   describe "#normal_update_quality" do
     it "normal rose's sell in date decrease by 1" do
-      item = GildedRose.new("normal", 10, 10)
-      item.normal_update_quality()
+      item = Normal.new("normal", 10, 10)
+      item.update_quality()
       expect(item.quality).to eq(9)
       expect(item.sell_in).to eq(9)
     end
 
     it "normal rose's quality degrades twice as fast once sell by date passed" do
-      item = GildedRose.new("normal", 0, 10)
-      item.normal_update_quality()
+      item = Normal.new("normal", 0, 10)
+      item.update_quality()
       expect(item.quality).to eq(8)
     end
 
     it "normal rose's quality degrades only once before the sell by date passed" do
-      item = GildedRose.new("normal", 1, 10)
-      item.normal_update_quality()
+      item = Normal.new("normal", 1, 10)
+      item.update_quality()
       expect(item.quality).to eq(9)
     end
   end
