@@ -30,6 +30,12 @@ class GildedRose
     @sell_in -= 1
   end
 
+  def sulfuras_update_quality
+    @quality
+
+    @sell_in -= 1
+  end
+
 
   def update_quality
     case name
@@ -37,6 +43,8 @@ class GildedRose
         return normal_update_quality
       when 'Aged Brie'
         return aged_brie_update_quality
+      when 'Sulfuras'
+        return sulfuras_update_quality
 
 
       # # Normal
