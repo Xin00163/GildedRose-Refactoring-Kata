@@ -32,8 +32,16 @@ class GildedRose
 
   def sulfuras_update_quality
     @quality
+    @sell_in -= 1
+  end
+
+  def backstage_update_quality
+    if @quality < 50
+      @quality += 1
+    end
 
     @sell_in -= 1
+
   end
 
 
@@ -45,6 +53,8 @@ class GildedRose
         return aged_brie_update_quality
       when 'Sulfuras'
         return sulfuras_update_quality
+      when 'Backstage passes'
+        return backstage_update_quality
 
 
       # # Normal

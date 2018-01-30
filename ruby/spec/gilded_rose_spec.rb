@@ -33,12 +33,21 @@ describe GildedRose do
   end
 
   describe "#sulfuras_update_quality" do
-      it "sulfura's quality does not change as it gets older" do
-        item = GildedRose.new("Sulfuras", 10, 10)
-        item.sulfuras_update_quality()
-        expect(item.quality).to eq(10)
-        expect(item.sell_in).to eq(9)
-      end
+    it "sulfura's quality does not change as it gets older" do
+      item = GildedRose.new("Sulfuras", 10, 10)
+      item.sulfuras_update_quality()
+      expect(item.quality).to eq(10)
+      expect(item.sell_in).to eq(9)
+    end
+  end
+
+  describe "#sulfuras_update_quality" do
+    it "backstage's quality increase as it gets older" do
+      item = GildedRose.new("Backstage passes", 10, 10)
+      item.backstage_update_quality()
+      expect(item.quality).to eq(11)
+      expect(item.sell_in).to eq(9)
+    end
   end
 
 
