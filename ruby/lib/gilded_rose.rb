@@ -12,17 +12,22 @@ class GildedRose
   end
 
   def normal_update_quality
-    if @quality != 0
-      if @sell_in > 0
-        @quality -= 1
-      end
-      if @sell_in <= 0
-        @quality -= 2
-      end
+    return if @quality == 0
+    if @sell_in > 0
+      @quality -= 1
+    else
+      @quality -= 2
     end
 
-      @sell_in -= 1
+    @sell_in -= 1
+  end
 
+  def aged_brie_update_quality
+    if @quality < 50
+    @quality += 1
+    end
+
+    @sell_in -= 1
   end
 
 
@@ -30,6 +35,8 @@ class GildedRose
     case name
       when 'normal'
         return normal_update_quality
+      when 'Aged Brie'
+        return aged_brie_update_quality
 
 
       # # Normal

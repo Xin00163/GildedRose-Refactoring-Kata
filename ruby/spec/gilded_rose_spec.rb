@@ -15,7 +15,21 @@ describe GildedRose do
       item.normal_update_quality()
       expect(item.quality).to eq(8)
     end
-    
+
+    it "normal rose's quality degrades only once before the sell by date passed" do
+      item = GildedRose.new("normal", 1, 10)
+      item.normal_update_quality()
+      expect(item.quality).to eq(9)
+    end
+  end
+
+  describe "#aged_brie_update_quality" do
+    it "aged brie's quality increase as it gets older" do
+      item = GildedRose.new("Aged Brie", 10, 10)
+      item.aged_brie_update_quality()
+      expect(item.quality).to eq(11)
+      expect(item.sell_in).to eq(9)
+    end
   end
 
 end
