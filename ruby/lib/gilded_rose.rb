@@ -7,13 +7,22 @@ class GildedRose
     @quality = quality
   end
 
+  def to_s()
+    "#{@name}, #{@sell_in}, #{@quality}"
+  end
 
   def normal_update_quality
-    @sell_in -= 1
-    # return if @item.quality == 0
+    if @quality != 0
+      if @sell_in > 0
+        @quality -= 1
+      end
+      if @sell_in <= 0
+        @quality -= 2
+      end
+    end
 
-    @quality -= 1
-    # @quality -= 1 if @sell_in <= 0
+      @sell_in -= 1
+
   end
 
 
@@ -65,10 +74,5 @@ class GildedRose
       #     end
       #   end
     end
-    end
-
-    def to_s()
-      "#{@name}, #{@sell_in}, #{@quality}"
-    end
-
-    end
+  end
+end

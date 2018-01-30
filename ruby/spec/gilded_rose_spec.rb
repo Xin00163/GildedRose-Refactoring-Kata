@@ -9,6 +9,13 @@ describe GildedRose do
       expect(item.quality).to eq(9)
       expect(item.sell_in).to eq(9)
     end
+
+    it "normal rose's quality degrades twice as fast once sell by date passed" do
+      item = GildedRose.new("normal", 0, 10)
+      item.normal_update_quality()
+      expect(item.quality).to eq(8)
+    end
+    
   end
 
 end
